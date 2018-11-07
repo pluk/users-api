@@ -2,17 +2,15 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-
 
 /**
  * Class Group
  *
- * @ORM/Entity()
- * @ORM/Table()
+ * @ORM\Entity()
+ * @ORM\Table(name="groups")
  */
-class Group
+class Group implements \JsonSerializable
 {
     /**
      * @var int
@@ -26,26 +24,27 @@ class Group
     /**
      * @var string
      *
-     * @ORM/Column(type="string", , unique=true)
+     * @ORM\Column(type="string", unique=true)
      */
     private $name;
 
-    /**
-     * @var User[]|ArrayCollection
-     *
-     * @ORM\OneToMany(
-     *     targetEntity="User", mappedBy="group",
-     *     cascade={"all"}, fetch="EXTRA_LAZY"
-     * )
-     */
-    private $users;
-
-    public function __construct()
+    public function __construct(string $name)
     {
+        $this->name = $name;
     }
 
-    public function addUser(User $user)
+    public function setName(string $name): self
     {
-        $this->users->add($user);
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+        ];
     }
 }

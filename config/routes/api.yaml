@@ -1,0 +1,39 @@
+users_show:
+  path: /users/{id<\d+>}
+  controller: App\Controller\UsersController::show
+  methods:  [GET]
+
+users_find:
+  path: /users/
+  controller: App\Controller\UsersController::find
+  methods:  [GET]
+
+users_create:
+  path: /users/
+  controller: App\Controller\UsersController::create
+  methods:  [POST]
+
+users_update:
+  path: /users/{id<\d+>}
+  controller: App\Controller\UsersController::update
+  methods:  [PUT]
+
+groups_show:
+  path: /groups/{id<\d+>}
+  controller: App\Controller\GroupsController::show
+  methods:  [GET]
+
+groups_find:
+  path: /groups/
+  controller: App\Controller\GroupsController::find
+  methods:  [GET]
+
+groups_create:
+  path: /groups/
+  controller: App\Controller\GroupsController::create
+  methods:  [POST]
+
+groups_update:
+  path: /groups/{id<\d+>}
+  controller: App\Controller\GroupsController::update
+  methods:  [PUT]
